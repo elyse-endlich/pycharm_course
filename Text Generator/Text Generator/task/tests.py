@@ -11,7 +11,8 @@ def tokenize():
         return f.read().split()
 
 class TextGeneratorTests(StageTest):
-    def generate(self):
+    @staticmethod
+    def generate():
         test_input1 = PATH + "\nexit\n"
         test_input2 = PATH + "\n0\n1\n2\n-1\nten\n43256236577\nexit\n"
         test_input3 = PATH + "\n" + "\n".join(
@@ -23,7 +24,8 @@ class TextGeneratorTests(StageTest):
             TestCase(stdin=test_input3, attach=test_input3)
         ]
 
-    def check(self, reply, attach):
+    @staticmethod
+    def check(reply, attach):
         try:
             corpus = tokenize()
         except FileNotFoundError:

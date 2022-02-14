@@ -53,22 +53,20 @@ class TextGeneratorTests(StageTest):
                         "The number of outputted tokens is "
                         "greater then the number of tokens in the corpus. You should tokenize "
                         "the corpus by whitespaces and leave punctuation marks intact.")
-                else:
-                    return CheckResult.wrong(
-                        "The number of outputted tokens is smaller then "
-                        "the number of tokens in the corpus. You should tokenize "
-                        "the corpus by whitespaces and leave punctuation marks intact.")
+                return CheckResult.wrong(
+                    "The number of outputted tokens is smaller then "
+                    "the number of tokens in the corpus. You should tokenize "
+                    "the corpus by whitespaces and leave punctuation marks intact.")
             if (cres := int(stats[2].split()[-1])) != (clen := len(set(corpus))):
                 if cres > clen:
                     return CheckResult.wrong(
                         "The number of outputted unique tokens is greater then "
                         "the number of unique tokens in the corpus. Make sure that "
                         "every unique token is counted only once.")
-                else:
-                    return CheckResult.wrong(
-                        "The number of outputted unique tokens is smaller then "
-                        "the number of unique tokens in the corpus. "
-                        "Every unique token should be counted only once, but capitalization does matter.")
+                return CheckResult.wrong(
+                    "The number of outputted unique tokens is smaller then "
+                    "the number of unique tokens in the corpus. "
+                    "Every unique token should be counted only once, but capitalization does matter.")
         except IndexError:
             return CheckResult.wrong("Invalid format. Make sure 'Corpus statistics' is in a valid format.")
         except ValueError:

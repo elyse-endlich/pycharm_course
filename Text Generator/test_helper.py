@@ -69,7 +69,7 @@ def patch_input():
         save_input = builtins.input
         builtins.input = mock_fun
         return save_input
-    elif sys.version_info[0] == 2:
+    if sys.version_info[0] == 2:
         import __builtin__
         save_input = __builtin__.raw_input
         __builtin__.raw_input = mock_fun
@@ -93,7 +93,7 @@ def import_file(path):
         import imp
 
         return imp.load_source("tmp", path)
-    elif sys.version_info[0] == 3:
+    if sys.version_info[0] == 3:
         import importlib.machinery
 
         return importlib.machinery.SourceFileLoader("tmp", path).load_module("tmp")
